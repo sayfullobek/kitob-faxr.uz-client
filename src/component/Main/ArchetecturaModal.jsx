@@ -30,14 +30,14 @@ export default function ArchetecturaModal({ data }) {
 					className='modal-content border-0'
 					style={{
 						backgroundColor: 'transparent',
-						height: '100vh',
+						height: '100%',
 						overflowY: 'auto',
 					}}
 				>
 					<div className='modal-header border-0'>
 						<button
 							type='button'
-							className='close text-dark'
+							className='close text-warning'
 							data-dismiss='modal'
 							aria-label='Yopish'
 						>
@@ -45,23 +45,21 @@ export default function ArchetecturaModal({ data }) {
 						</button>
 					</div>
 
-					<div className='modal-body d-flex flex-wrap justify-content-center align-items-start'>
+					<div className='modal-body d-flex flex-wrap justify-content-center align-items-start h-100'>
 						{/* Rasm */}
-						<div className='col-md-7 h-100'>
+						<div className='md-col-md-7'>
 							<img
 								src={`${APP_API.upload}/${data?.photo}`}
 								alt='Kvartira'
-								className='img-fluid shadow'
+								className='img-fluid shadow w-100 md-h-100'
 								style={{
-									height: '100%',
-									width: '100%',
 									objectFit: 'cover',
 								}}
 							/>
 						</div>
 
 						{/* Ma'lumotlar */}
-						<div className='col-md-5 bg-warning p-4 shadow text-dark h-100'>
+						<div className='col-md-5 bg-warning p-4 shadow text-dark'>
 							<h4 className='mb-3'>Loyiha: {data?.projects?.name}</h4>
 							<p className='d-flex align-items-center justify-content-between'>
 								<strong>Maydon:</strong> {data?.maydon} m²
@@ -85,7 +83,7 @@ export default function ArchetecturaModal({ data }) {
 					<div className='modal-footer border-0'>
 						<button
 							type='button'
-							className='btn btn-warning mt-3'
+							className='btn btn-warning'
 							data-toggle='modal'
 							data-target='#buyModal'
 							onClick={handleShowBuy}

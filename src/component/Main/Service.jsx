@@ -63,17 +63,19 @@ export default function Service() {
 	}
 
 	const handleShowModal = item => {
+		setId(item._id)
 		setData(item)
 		setTimeout(() => {
 			window.$('#kvartiraModal').modal('show')
 		}, 100)
 	}
 
-	const handleShowBuy = () => {
-		setId(data._id)
+	const handleShowBuy = idArch => {
+		setId(idArch)
 		setTimeout(() => {
 			window.$('#buyModal').modal('show')
 		}, 100)
+		console.log(id)
 	}
 
 	const changeSize = async () => {
@@ -218,7 +220,7 @@ export default function Service() {
 											className='btn btn-warning mt-3 w-100'
 											data-toggle='modal'
 											data-target='#buyModal'
-											onClick={handleShowBuy}
+											onClick={() => handleShowBuy(item._id)}
 										>
 											Buyurtma berish
 										</button>

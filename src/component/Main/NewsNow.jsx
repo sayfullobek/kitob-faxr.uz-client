@@ -25,9 +25,9 @@ export default function NewsNow() {
 		getOne()
 	}, [id])
 	return loading ? (
-		<div className='d-flex p-4'>
-			<div className='col-9'>
-				<div className='card p-4'>
+		<div className='d-flex justify-content-between p-4'>
+			<div className='md-col-9 NewsNow'>
+				<div className='card p-4 NewsNow'>
 					<div>
 						<h1 className='card-title'>{newNow.name}</h1>
 					</div>
@@ -45,7 +45,7 @@ export default function NewsNow() {
 					))}
 				</div>
 			</div>
-			<div className='col-3 p-4 bg-light'>
+			<div className='col-3 p-4 bg-light another-news'>
 				<div>
 					<h2>Boshqa Yangiliklar</h2>
 				</div>
