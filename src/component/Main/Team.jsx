@@ -51,7 +51,7 @@ export default function Team() {
 											{item.subNews?.description.length > 15 && '...'}
 										</p>
 										<button
-											className='btn btn-warning mt-2 w-100'
+											className='btn btn-info mt-2 w-100'
 											onClick={() => navigate(`/newsNow/${item._id}`)}
 										>
 											O'tish
@@ -63,7 +63,7 @@ export default function Team() {
 					</div>
 					<div className='text-center mt-4'>
 						<button
-							className='btn btn-warning'
+							className='btn btn-info'
 							disabled={total <= size ? true : false}
 							onClick={() => changeSize()}
 						>

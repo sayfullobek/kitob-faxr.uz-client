@@ -21,12 +21,23 @@ export default function ProjectModal({ data, setShowModals }) {
 	})
 	const [size, setSize] = useState(8)
 	const [total, setTotal] = useState(0)
+	const [id, setId] = useState(null)
+	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false)
+
+	const handleShowBuy = idArch => {
+		setId(idArch)
+		setIsBuyModalOpen(true)
+	}
+
+	const handleCloseBuy = () => {
+		setIsBuyModalOpen(false)
+	}
 
 	const getAll = async (size = 8) => {
 		try {
-			const res = await AutoGet(
-				`${APP_API.archetecturas}/project/${data._id}?page=1&limit=${size}`
-			)
+			const res = await AutoGet(`
+				${APP_API.archetecturas}/project/${data._id}?page=1&limit=${size}
+			`)
 			setTotal(res.total)
 			setDatas(res.data)
 			setFiltered(res.data)
@@ -74,12 +85,6 @@ export default function ProjectModal({ data, setShowModals }) {
 		}, 100)
 	}
 
-	const handleShowBuy = () => {
-		setTimeout(() => {
-			window.$('#buyModal').modal('show')
-		}, 100)
-	}
-
 	const changeSize = async () => {
 		setSize(size + 4)
 		await getAll(size + 4)
@@ -100,7 +105,7 @@ export default function ProjectModal({ data, setShowModals }) {
 			<div className='w-100'>
 				<div className='w-100' style={{ position: 'relative' }}>
 					<button
-						className='btn btn-warning m-2'
+						className='btn btn-info m-2'
 						style={{ position: 'absolute', zIndex: '999999999' }}
 						onClick={() => setShowModals(false)}
 					>
@@ -119,8 +124,8 @@ export default function ProjectModal({ data, setShowModals }) {
 				</div>
 				<div>
 					<div className='service py-5'>
-						{data && <ArchetecturaModal data={dataone} />}
-						<BuyModal />
+					{dataone && <ArchetecturaModal data={dataone} />}
+					<BuyModal id={id} isVisible={isBuyModalOpen} onClose={handleCloseBuy} />
 						<div className='container'>
 							<div className='section-header text-center mb-5'>
 								<p>Kvartiralar</p>
@@ -214,8 +219,10 @@ export default function ProjectModal({ data, setShowModals }) {
 														<p>Navbat: {item.navbat}</p>
 													</div>
 												</div>
-												<div className='service-text p-3'>
-													<h5>{item.projects?.name || 'Nomlanmagan'}</h5>
+												<div className='text-dark p-3 w-100 d-flex flex-column'>
+													<h5 className={'text-dark'}>
+														{item.projects?.name || 'Nomlanmagan'}
+													</h5>
 													<p
 														style={{
 															width: '100%',
@@ -249,10 +256,10 @@ export default function ProjectModal({ data, setShowModals }) {
 													</p>
 													<button
 														type='button'
-														className='btn btn-warning mt-3 w-100'
+														className='btn btn-info mt-3 w-100'
 														data-toggle='modal'
 														data-target='#buyModal'
-														onClick={handleShowBuy}
+														onClick={() => handleShowBuy(item._id)}
 													>
 														Buyurtma berish
 													</button>
@@ -265,7 +272,7 @@ export default function ProjectModal({ data, setShowModals }) {
 						</div>
 						<div className='text-center mt-4'>
 							<button
-								className='btn btn-warning'
+								className='btn btn-info'
 								disabled={total <= size ? true : false}
 								onClick={() => changeSize()}
 							>

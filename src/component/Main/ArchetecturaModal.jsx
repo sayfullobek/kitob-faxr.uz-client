@@ -1,11 +1,17 @@
+import { useState } from 'react'
 import { APP_API } from '../../config/BaseConfig'
 import BuyModal from './BuyModal'
 
 export default function ArchetecturaModal({ data }) {
+
+	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false)
+
 	const handleShowBuy = () => {
-		setTimeout(() => {
-			window.$('#buyModal').modal('show')
-		}, 100)
+		setIsBuyModalOpen(true)
+	}
+
+	const handleCloseBuy = () => {
+		setIsBuyModalOpen(false)
 	}
 	return (
 		<div
@@ -21,7 +27,8 @@ export default function ArchetecturaModal({ data }) {
 				overflowY: 'auto',
 			}}
 		>
-			{data && <BuyModal id={data?._id} onSubmit={handleShowBuy} />}
+
+			<BuyModal id={data._id} isVisible={isBuyModalOpen} onClose={handleCloseBuy} />
 			<div
 				className='modal-dialog modal-xl modal-dialog-centered'
 				role='document'
@@ -29,7 +36,8 @@ export default function ArchetecturaModal({ data }) {
 				<div
 					className='modal-content border-0'
 					style={{
-						backgroundColor: 'transparent',
+
+						backgroundColor: 'rgba(255, 255, 255, 0.515)',
 						height: '100%',
 						overflowY: 'auto',
 					}}
@@ -37,7 +45,8 @@ export default function ArchetecturaModal({ data }) {
 					<div className='modal-header border-0'>
 						<button
 							type='button'
-							className='close text-warning'
+
+							className='close text-info'
 							data-dismiss='modal'
 							aria-label='Yopish'
 						>
@@ -47,7 +56,7 @@ export default function ArchetecturaModal({ data }) {
 
 					<div className='modal-body d-flex flex-wrap justify-content-center align-items-start h-100'>
 						{/* Rasm */}
-						<div className='md-col-md-7'>
+						<div className='md-col-md-9'>
 							<img
 								src={`${APP_API.upload}/${data?.photo}`}
 								alt='Kvartira'
@@ -59,7 +68,7 @@ export default function ArchetecturaModal({ data }) {
 						</div>
 
 						{/* Ma'lumotlar */}
-						<div className='col-md-5 bg-warning p-4 shadow text-dark'>
+						<div className='col-md-10 bg-info p-4 shadow text-dark'>
 							<h4 className='mb-3'>Loyiha: {data?.projects?.name}</h4>
 							<p className='d-flex align-items-center justify-content-between'>
 								<strong>Maydon:</strong> {data?.maydon} m²
@@ -83,7 +92,8 @@ export default function ArchetecturaModal({ data }) {
 					<div className='modal-footer border-0'>
 						<button
 							type='button'
-							className='btn btn-warning'
+
+							className='btn btn-info'
 							data-toggle='modal'
 							data-target='#buyModal'
 							onClick={handleShowBuy}

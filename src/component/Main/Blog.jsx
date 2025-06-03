@@ -81,7 +81,7 @@ export default function Blog() {
 					</div>
 					<div className='w-100 d-flex align-items-center justify-content-center'>
 						<button
-							className='btn btn-warning'
+							className='btn btn-info'
 							onClick={changeSize}
 							disabled={total <= size}
 						>

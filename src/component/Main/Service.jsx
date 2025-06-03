@@ -21,6 +21,16 @@ export default function Service() {
 		maxMaydon: '',
 		soldOut: '',
 	})
+	const [isBuyModalOpen, setIsBuyModalOpen] = useState(false)
+
+	const handleShowBuy = idArch => {
+		setId(idArch)
+		setIsBuyModalOpen(true)
+	}
+
+	const handleCloseBuy = () => {
+		setIsBuyModalOpen(false)
+	}
 
 	const getAll = async (size = 8) => {
 		const res = await AutoGet(`${APP_API.archetecturas}?page=1&limit=${size}`)
@@ -70,14 +80,6 @@ export default function Service() {
 		}, 100)
 	}
 
-	const handleShowBuy = idArch => {
-		setId(idArch)
-		setTimeout(() => {
-			window.$('#buyModal').modal('show')
-		}, 100)
-		console.log(id)
-	}
-
 	const changeSize = async () => {
 		setSize(size + 4)
 		await getAll(size + 4)
@@ -86,7 +88,7 @@ export default function Service() {
 	return loading ? (
 		<div className='service py-5 bg-light'>
 			{data && <ArchetecturaModal data={data} />}
-			<BuyModal id={id} />
+			<BuyModal id={id} isVisible={isBuyModalOpen} onClose={handleCloseBuy} />
 			<div className='container'>
 				<div className='section-header text-center mb-5'>
 					<p>Kvartiralar</p>
@@ -217,7 +219,7 @@ export default function Service() {
 										</p>
 										<button
 											type='button'
-											className='btn btn-warning mt-3 w-100'
+											className='btn btn-info mt-3 w-100'
 											data-toggle='modal'
 											data-target='#buyModal'
 											onClick={() => handleShowBuy(item._id)}
@@ -232,7 +234,7 @@ export default function Service() {
 				</div>
 				<div className='text-center mt-4'>
 					<button
-						className='btn btn-warning'
+						className='btn btn-info'
 						disabled={total <= size ? true : false}
 						onClick={() => changeSize()}
 					>
