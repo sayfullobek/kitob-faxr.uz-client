@@ -36,8 +36,7 @@ export default function ArchetecturaModal({ data }) {
 				<div
 					className='modal-content border-0'
 					style={{
-
-						backgroundColor: 'rgba(255, 255, 255, 0.515)',
+						backgroundColor: 'transparent',
 						height: '100%',
 						overflowY: 'auto',
 					}}
@@ -45,7 +44,6 @@ export default function ArchetecturaModal({ data }) {
 					<div className='modal-header border-0'>
 						<button
 							type='button'
-
 							className='close text-info'
 							data-dismiss='modal'
 							aria-label='Yopish'
@@ -56,11 +54,11 @@ export default function ArchetecturaModal({ data }) {
 
 					<div className='modal-body d-flex flex-wrap justify-content-center align-items-start h-100'>
 						{/* Rasm */}
-						<div className='md-col-md-9'>
+						<div className='md-col-md-10'>
 							<img
 								src={`${APP_API.upload}/${data?.photo}`}
 								alt='Kvartira'
-								className='img-fluid shadow w-100 md-h-100'
+								className='shadow w-100 md-h-100'
 								style={{
 									objectFit: 'cover',
 								}}
@@ -92,7 +90,6 @@ export default function ArchetecturaModal({ data }) {
 					<div className='modal-footer border-0'>
 						<button
 							type='button'
-
 							className='btn btn-info'
 							data-toggle='modal'
 							data-target='#buyModal'
