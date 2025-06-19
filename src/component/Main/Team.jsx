@@ -34,33 +34,42 @@ export default function Team() {
 						<p>Yangiliklar</p>
 						<h2>Kompaniya yangiliklari</h2>
 					</div>
-					<div class='row'>
-						{news.map(item => (
-							<div class='col-lg-3 col-md-6 wow fadeInUp' data-wow-delay='0.1s'>
-								<div class='team-item'>
-									<div class='team-img'>
-										<img
-											src={`${APP_API.upload}/${item.subNews?.photo}`}
-											alt='Team Image'
-										/>
-									</div>
-									<div class='team-text'>
-										<h2>{item.name}</h2>
-										<p>
-											{item.subNews?.description.slice(0, 15)}{' '}
-											{item.subNews?.description.length > 15 && '...'}
+					<div className="row justify-content-center">
+						{news.map((item, index) => (
+							<div
+								key={item._id || index}
+								className="col-xl-3 col-lg-4 col-md-6 mb-4 d-flex align-items-stretch"
+							>
+								<div className="card shadow-sm w-100 border-0">
+									<img
+										src={`${APP_API.upload}/${item.subNews?.photo}`}
+										alt="Yangilik rasmi"
+										className="card-img-top"
+										style={{
+											height: "200px",
+											objectFit: "cover",
+											borderTopLeftRadius: "0.5rem",
+											borderTopRightRadius: "0.5rem",
+										}}
+									/>
+									<div className="card-body d-flex flex-column">
+										<h5 className="card-title fw-bold text-dark">{item.name}</h5>
+										<p className="card-text text-muted flex-grow-1">
+											{item.subNews?.description?.slice(0, 60)}
+											{item.subNews?.description?.length > 60 && "..."}
 										</p>
 										<button
-											className='btn btn-info mt-2 w-100'
+											className="btn btn-primary mt-auto"
 											onClick={() => navigate(`/newsNow/${item._id}`)}
 										>
-											O'tish
+											Batafsil ko‘rish
 										</button>
 									</div>
 								</div>
 							</div>
 						))}
 					</div>
+
 					<div className='text-center mt-4'>
 						<button
 							className='btn btn-info'
