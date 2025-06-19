@@ -143,7 +143,7 @@ export default function Service() {
 				<div className='row'>
 					{filtered.length === 0 ? (
 						<div className='col-12 text-center'>
-							<p>Hech qanday kvartira topilmadi.</p>
+							<p>Hozircha sotilmagan kvartiralar mavjud emas!</p>
 						</div>
 					) : (
 						filtered.map(item => (
