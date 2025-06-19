@@ -36,7 +36,7 @@ export default function Faq() {
 				'Har bir loyiha uchun mas’ul muhandis biriktiriladi. Siz esa real vaqt rejimida ish holatini Telegram yoki WhatsApp orqali kuzatib borishingiz mumkin.',
 		},
 		{
-			name: 'Kompaniyangiz kafolat beradiymi?',
+			name: 'Kompaniyangiz kafolat beradimi?',
 			value:
 				'Ha, biz qurilgan obyektlarga 1 yillik bepul kafolat xizmatini taqdim etamiz. Agar muammo yuzaga kelsa, bepul tuzatamiz.',
 		},
